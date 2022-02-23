@@ -1,0 +1,10 @@
+.header-container {
+    width: 100%;
+    display: flex;
+}
+
+.back-arrow {
+    margin-left: 1%;
+    width: 3%;
+    color: var(--primary-color);
+}
