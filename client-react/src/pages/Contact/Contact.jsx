@@ -1,10 +1,9 @@
-import React, {useEffect, useRef, useState} from 'react';
-import { FirstContent, SecondContent } from './StepContent';
+import React, { useEffect, useRef, useState } from 'react';
+import { FirstContent, SecondContent, ThirdContent } from './StepContent';
 import StepProgressBar from 'react-step-progress';
 
 import 'react-step-progress/dist/index.css';
 import './Contact.css';
-import {StepContent} from "../../layout";
 
 const keys = ['company', 'name', 'email', 'description'];
 
@@ -14,10 +13,16 @@ export const Contact = () => {
         name: '',
         email: '',
         description: '',
+        date: {},
     });
-    const [ isValid, setIsValid ] = useState(false);
-    const curIsValid = useRef(isValid);
-    curIsValid.current = isValid;
+    const currForm = useRef(form);
+
+    const [ stepOneIsValid, setStepOneIsValid ] = useState(false);
+    const stepOneValidator = useRef(stepOneIsValid);
+    stepOneValidator.current = stepOneIsValid;
+    const [ stepTwoIsValid, setStepTwoIsValid ] = useState(false);
+    const stepTwoValidator = useRef(stepTwoIsValid);
+    stepTwoValidator.current = stepTwoIsValid;
 
     useEffect(() => {
         let filledAll = true;
@@ -26,8 +31,13 @@ export const Contact = () => {
                 filledAll = false;
             }
         });
-        setIsValid(filledAll);
+        setStepOneIsValid(filledAll);
+
+        setStepTwoIsValid(Object.keys(form.date).length !== 0);
+        currForm.current = form;
     }, [form]);
+
+    const getData = () => currForm.current;
 
     const handleSubmit = () => {};
 
@@ -40,17 +50,18 @@ export const Contact = () => {
                         label: 'Form',
                         name: 'information',
                         content: <FirstContent setForm={setForm} keys={keys} />,
-                        validator: () => curIsValid.current,
+                        validator: () => stepOneValidator.current,
                     },
                     {
                         label: 'Calendar',
                         name: 'Calendar',
-                        content: <SecondContent />
+                        content: <SecondContent setForm={setForm} />,
+                        validator: () => stepTwoValidator.current,
                     },
                     {
                         label: 'Finish',
                         name: 'Finish',
-                        content: <StepContent />
+                        content: <ThirdContent getData={getData} />,
                     }
                 ]}
                 onSubmit={handleSubmit}
