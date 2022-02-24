@@ -44,7 +44,16 @@ router.post('/',
     body('email')
         .isEmail()
         .normalizeEmail(),
-    body('date').isObject(),
+    body('date')
+        .isObject(),
+    body('company')
+        .not().isEmpty(),
+    body('contact_name')
+        .not().isEmpty(),
+    body('contact_email')
+        .not().isEmpty(),
+    body('description')
+        .not().isEmpty(),
     async (req, res, next) => {
         const errors = validationResult(req);
 
@@ -117,7 +126,7 @@ router.post('/check',
                     { email },
                     { $set: { [`dates.${dateIdx}.hours.${hoursIdx}.available`]: false } }
                 );
-                return res.status(200).json({ success: 'This date has been taken' });
+                return res.status(200).json({ success: 'This date has now been taken' });
             }
             return res.status(404).json({ errors: 'There is an error with the date Object' });
         }

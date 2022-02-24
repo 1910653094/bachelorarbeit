@@ -6,7 +6,7 @@ export const Card = ({ dateObj, idx, selection, onChange }) => {
         <div className='card-container'>
             <div className='text-container'>
                 <div>From: { dateObj.from }</div>
-                <div>To: { dateObj.to }</div>
+                <div>To: { dateObj.until }</div>
             </div>
             <input type='radio' checked={selection} onChange={() => onChange(idx)} />
         </div>

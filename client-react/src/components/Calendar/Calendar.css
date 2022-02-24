@@ -82,3 +82,8 @@ div#next::after {
 .grey {
     background-color: var(--background-second) !important;
 }
+
+.circle:before {
+    content: ' \25CF';
+    color: var(--primary-color);
+}

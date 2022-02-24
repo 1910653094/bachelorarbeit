@@ -9,7 +9,7 @@ const days = [
     'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'
 ];
 
-export const Calendar = ({ selected, setSelected }) => {
+export const Calendar = ({ selected, setSelected, availableDays }) => {
     const [ date, setDate ] = useState({
         month: 0,
         year: 0,
@@ -133,6 +133,11 @@ export const Calendar = ({ selected, setSelected }) => {
                                 (d.key === selected ? 'selected ' : '')
                             }
                         >
+                            {
+                                availableDays.includes(d.key) && (
+                                    <span className='circle'/>
+                                )
+                            }
                             { d.date }
                             { d.date === 1 ? '. ' + d.month : '' }
                         </div>
