@@ -1,0 +1,18 @@
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-bottom: 1.3rem;
+}
+.content-container > h3 {
+    font-weight: normal;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+.content-container > h4 {
+    font-size: .95rem;
+    margin-bottom: .2rem;
+    color: var(--tertiary-color);
+    font-weight: normal;
+}

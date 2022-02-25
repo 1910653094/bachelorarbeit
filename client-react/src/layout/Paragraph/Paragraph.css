@@ -1,0 +1,14 @@
+.paragraph-title {
+    font-weight: 350;
+    text-transform: uppercase;
+    color: var(--tertiary-color);
+
+    margin-bottom: 1.4rem;
+}
+.paragraph-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    padding: 3rem 0 0 5rem;
+}

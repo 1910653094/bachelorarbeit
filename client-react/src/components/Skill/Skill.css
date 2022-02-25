@@ -1,0 +1,18 @@
+.skill {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 22rem;
+    margin-bottom: .35rem;
+}
+.dot {
+    height: .7rem;
+    width: .7rem;
+    background-color: var(--background-second);
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: .5rem;
+}
+.dot.fill {
+    background-color: var(--primary-color);
+}

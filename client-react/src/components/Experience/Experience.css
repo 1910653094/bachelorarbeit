@@ -1,0 +1,31 @@
+.experience {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-bottom: 1.3rem;
+}
+
+.experience > h3 {
+    font-weight: normal;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.job {
+    font-size: .95rem;
+    margin-bottom: .2rem;
+}
+.experience > p {
+    color: var(--light-text-color);
+    max-width: 30rem;
+    text-align: left;
+}
+.experience > h4 {
+    font-weight: normal;
+    color: var(--secondary-color);
+}
+.experience > h4:last-child > span {
+    color: var(--tertiary-color);
+    margin-left: 1rem;
+}

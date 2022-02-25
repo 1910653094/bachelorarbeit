@@ -7,6 +7,14 @@
   display: none;  /* Safari and Chrome */
 }
 
+/* Reset default browser styles */
+html, body, div,
+h1, h2, h3, h4, h5, h6, ul ol, li, p, blockquote, pre,
+form, fieldset, table, th, td {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,7 +22,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
+  overflow-x: hidden;
   color: var(--primary-color);
   background-color: var(--background-color);
 }
@@ -29,6 +37,8 @@ code {
   --background-second: #DFDFDF;
   --shadow-color: #EFEFEF;
 
+  --light-text-color: #BCBCBC;
+
   --primary-color: #222222;
   --secondary-color: #37474F;
   --tertiary-color: #455A64;
@@ -42,9 +52,11 @@ code {
   --background-second: #424242;
   --shadow-color: #323232;
 
-  --primary-color: #FFFFFF;
-  --secondary-color: #CFD8DC;
-  --tertiary-color: #B0BEC5;
+  --light-text-color: #656565;
+
+  --primary-color: #DDDDDD;/*#FFFFFF;*/
+  --secondary-color: #ADB6BA;/*#CFD8DC;*/
+  --tertiary-color: #909CA3;/*#B0BEC5;*/
 
   --interactive-color: #0071BC;
 }
