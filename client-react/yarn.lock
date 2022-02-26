@@ -7200,10 +7200,10 @@ react-scripts@5.0.0:
   optionalDependencies:
     fsevents "^2.3.2"
 
-react-step-progress@1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-step-progress/-/react-step-progress-1.0.2.tgz#74d85562e9b0983efc0b194615081579ef287ea0"
-  integrity sha512-x1d0j9axTniMaUBSl+gLsVD8KObwqnif5P/+GnrzAYRuY0SoFWsfGDNMipWkI3ueYiE6Dr2+w7GXjqEw0epSPA==
+react-step-progress@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-step-progress/-/react-step-progress-1.0.3.tgz#8c93a7e4f5fd020888873944534cd97ab7641535"
+  integrity sha512-AsebjdBZsoZzZuN50p24TMwKt8JVdyhsAPL/xvpY4c3dpQ9XBiRcZlADD0BoKP3iIxpEm+7ufwITmwY66FEfjQ==
 
 react@^17.0.2:
   version "17.0.2"
