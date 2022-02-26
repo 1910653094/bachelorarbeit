@@ -72,7 +72,7 @@ export const SecondContent = ({ setForm }) => {
             }
         ]);*/
         return () => {};
-    }, [data]);
+    }, []);
 
 
     useEffect(() => {
@@ -83,7 +83,7 @@ export const SecondContent = ({ setForm }) => {
         setPossibilities(newData);
         setSelectedCardState([...Array(newData.length).keys()].map(() => false));
         return () => {};
-    }, [selected]);
+    }, [selected, data]);
 
     const setSelectedCard = idx => {
         let prev = [ ...selectedCard ].map(() => false);
