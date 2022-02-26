@@ -80,3 +80,38 @@
     color: var(--secondary-color);
     margin-bottom: .05rem;
 }
+
+.expertise-list {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.expertise-list > div {
+    display: flex;
+    align-items: center;
+    margin-bottom: .25rem;
+}
+.expertise-list > div > div {
+    border-radius: 50%;
+    border: 1px solid var(--background-second);
+    color: var(--background-color);
+    height: .25rem;
+    width: .25rem;
+    margin-right: .5rem;
+}
+
+.interest-list-first, .interest-list-second {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.interest-list-first > div, .interest-list-second > div {
+    padding: .75rem;
+    border-radius: 50%;
+    background-color: var(--shadow-color);
+    margin-right: 3rem
+}
+
+.interest-list-first > div > img, .interest-list-second > div > img {
+    width: 2.75rem;
+}

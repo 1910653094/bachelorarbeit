@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Experience, Skill } from '../../components';
 import { ContentContainer, Paragraph } from '../../layout';
 import './Home.css';
+import { BadmintonIcon, CodingIcon, TravelIcon, ClimbingIcon, HockeyIcon } from "../../assets/icons";
 
 export const Home = () => {
     const navigate = useNavigate();
@@ -22,6 +23,36 @@ export const Home = () => {
                 <div className='start-container'/>
 
                 <Paragraph title='Expertise'>
+                    <div className='expertise-list'>
+                        {
+                            expertise.map(exp =>
+                                <div key={exp}>
+                                    <div />{ exp }
+                                </div>
+                            )
+                        }
+                    </div>
+                </Paragraph>
+                <Paragraph title='Interests'>
+                    <div className='interest-list-first'>
+                        <div>
+                            <img src={HockeyIcon} alt='hockey'/>
+                        </div>
+                        <div>
+                            <img src={BadmintonIcon} alt='badminton'/>
+                        </div>
+                        <div>
+                            <img src={ClimbingIcon} alt='climbing'/>
+                        </div>
+                    </div>
+                    <div className='interest-list-second'>
+                        <div>
+                            <img src={TravelIcon} alt='travel'/>
+                        </div>
+                        <div>
+                            <img src={CodingIcon} alt='coding'/>
+                        </div>
+                    </div>
                 </Paragraph>
 
                 <div className='end-container'/>
@@ -38,21 +69,21 @@ export const Home = () => {
                 <Paragraph title='Skills'>
                     {
                         skills.map(skill =>
-                            <Skill skill={skill} />
+                            <Skill key={skill.name} skill={skill} />
                         )
                     }
                 </Paragraph>
                 <Paragraph title='Experiences'>
                     {
                         experiences.map(exp =>
-                            <Experience experience={exp} />
+                            <Experience key={exp.company} experience={exp} />
                         )
                     }
                 </Paragraph>
                 <Paragraph title='Education'>
                     {
                         education.map(ed =>
-                            <ContentContainer content={ed} />
+                            <ContentContainer key={ed.subtitle} content={ed} />
                         )
                     }
                 </Paragraph>
@@ -63,6 +94,9 @@ export const Home = () => {
     );
 };
 
+const expertise = [
+    'Frontend development', 'Backend development', 'App development'
+];
 const skills = [
     {
         name: 'JavaScript',
@@ -145,7 +179,7 @@ const education = [
     {
         from: '2019',
         to: '2022',
-        title: 'Bachelor of Science',
+        title: 'Bachelor of Science in Web Business and Technology',
         subtitle: 'University of Applied Sciences Kufstein, Tirol (Austria)'
     },
     {

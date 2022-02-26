@@ -8,7 +8,7 @@ export const Skill = ({ skill }) => {
             <div className='dots-container'>
                 {
                     [ ...Array(11).keys() ].map(i =>
-                        <div className={'dot' + (i <= skill.rating ? ' fill' : '')} />
+                        <div key={i} className={'dot' + (i <= skill.rating ? ' fill' : '')} />
                     )
                 }
             </div>
