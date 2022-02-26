@@ -1,7 +1,6 @@
 import React from 'react';
 
 import './Paragraph.css';
-import {ContentContainer} from "../ContentContainer/ContentContainer";
 
 export const Paragraph = ({ title, children }) => {
     return (

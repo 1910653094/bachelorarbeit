@@ -72,7 +72,7 @@ export const SecondContent = ({ setForm }) => {
             }
         ]);*/
         return () => {};
-    }, []);
+    }, [data]);
 
 
     useEffect(() => {
