@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StepContent } from '../../../layout';
+import { Input, TextArea } from '../../../components';
 
 export const FirstContent = ({ setForm, keys }) => {
     const [ company, setCompany ] = useState('');
@@ -30,16 +31,16 @@ export const FirstContent = ({ setForm, keys }) => {
     return (
         <StepContent>
             <label>Company</label>
-            <input type='text' value={company} onChange={e => handleChange(e.target.value, 0)} />
+            <Input type='text' value={company} onChange={e => handleChange(e.target.value, 0)} />
 
             <label>Contact person</label>
-            <input type='text' value={name} onChange={e => handleChange(e.target.value, 1)} />
+            <Input type='text' value={name} onChange={e => handleChange(e.target.value, 1)} />
 
             <label>Contact email</label>
-            <input type='text' value={email} onChange={e => handleChange(e.target.value, 2)} />
+            <Input type='text' value={email} onChange={e => handleChange(e.target.value, 2)} />
 
             <label>Job description</label>
-            <textarea
+            <TextArea
                 name=''
                 id=''
                 cols='30'

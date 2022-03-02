@@ -1,0 +1,45 @@
+.custom-input {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1rem;
+    line-height: 100%;
+    color: var(--primary-color);
+    gap: 0.5rem;
+    max-width: 320px;
+    width: 100%;
+}
+
+.custom-input > .password-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.custom-input > .password-container > svg {
+    position: absolute;
+    padding: 0.5rem;
+    color: black;
+}
+
+.custom-input input,
+.custom-input textarea {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background-color: var(--shadow-color);
+    border: 1px solid var(--shadow-color);
+    box-sizing: border-box;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    color: var(--primary-color);
+    outline: none;
+}
+
+.custom-input:focus {
+    border: 1px solid var(--primary-color);
+}
+
+.custom-input::placeholder {
+    color: var(--shadow-color);
+}

@@ -10,6 +10,7 @@ div.calendar {
 }
 .calendar-nav > h2 {
     margin: 0 0 0 10px;
+    color: var(--primary-color);
 }
 .date {
     display: block;
@@ -54,9 +55,10 @@ div#next::after {
     text-align: end;
 }
 
-.calendar-grid  div {
+.calendar-grid div {
     outline: 1px solid var(--tertiary-color);
     background-color: var(--background-color);
+    color: var(--primary-color);
     padding: 3px 7px 40px 0;
 }
 .calendar-grid > div.thead {
@@ -66,7 +68,7 @@ div#next::after {
 }
 
 .today {
-    color: var(--interactive-color);
+    color: var(--interactive-color) !important;
     font-weight: bold;
 }
 
@@ -75,7 +77,7 @@ div#next::after {
 }
 
 .today.selected {
-    color: var(--background-color);
+    color: var(--background-color) !important;
 }
 
 

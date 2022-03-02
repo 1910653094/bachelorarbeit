@@ -1,23 +1,28 @@
 import { Header } from './components';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { NotFound, Home, Contact } from './pages';
-import { ThemeContextProvider } from './context';
+import { NotFound, MyCV, Contact, Login, Home } from './pages';
+import { AuthContextProvider, ThemeContextProvider } from './context';
 import './App.css';
 
 const App = () => {
   return (
     <ThemeContextProvider>
-      <div className='App'>
-        <Router>
-          <Header />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/contact' element={<Contact />} />
+      <AuthContextProvider>
+        <div className='App'>
+          <Router>
+            <Header />
+            <Routes>
+              <Route path='/' element={<MyCV />} />
+              <Route path='/contact' element={<Contact />} />
 
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-        </Router>
-      </div>
+              <Route path='/login' element={<Login />} />
+              <Route path='/account' element={<Home />} />
+
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          </Router>
+        </div>
+      </AuthContextProvider>
     </ThemeContextProvider>
   );
 }

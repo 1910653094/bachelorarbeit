@@ -4,3 +4,4 @@ export { Header } from './Header/Header';
 export { Card } from './Card/Card';
 export { Skill } from './Skill/Skill';
 export { Experience } from './Experience/Experience';
+export { Button, Input, TextArea } from './styles';

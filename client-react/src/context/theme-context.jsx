@@ -9,10 +9,10 @@ export const ThemeContextProvider = ({ children }) => {
     const [ theme, setThemeState ] = useState('');
 
     useEffect(() => {
-        /*if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             setThemeState('dark');
             document.documentElement.setAttribute('data-theme', 'dark');
-        }*/
+        }
         return () => {};
     }, []);
 
@@ -25,7 +25,7 @@ export const ThemeContextProvider = ({ children }) => {
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
-            {children}
+            { children }
         </ThemeContext.Provider>
     );
 };
