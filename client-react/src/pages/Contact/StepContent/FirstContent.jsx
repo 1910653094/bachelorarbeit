@@ -30,19 +30,29 @@ export const FirstContent = ({ setForm, keys }) => {
 
     return (
         <StepContent>
-            <label>Company</label>
-            <Input type='text' value={company} onChange={e => handleChange(e.target.value, 0)} />
+            <Input
+                title='Company'
+                type='text'
+                value={company}
+                onChange={e => handleChange(e.target.value, 0)}
+            />
 
-            <label>Contact person</label>
-            <Input type='text' value={name} onChange={e => handleChange(e.target.value, 1)} />
+            <Input
+                title='Contact person'
+                type='text'
+                value={name}
+                onChange={e => handleChange(e.target.value, 1)}
+            />
 
-            <label>Contact email</label>
-            <Input type='text' value={email} onChange={e => handleChange(e.target.value, 2)} />
+            <Input
+                title='Contact email'
+                type='text'
+                value={email}
+                onChange={e => handleChange(e.target.value, 2)}
+            />
 
-            <label>Job description</label>
             <TextArea
-                name=''
-                id=''
+                title='Job description'
                 cols='30'
                 rows='10'
                 value={description}

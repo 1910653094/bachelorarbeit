@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import './Calendar.css';
+import {germanDateStringToDate} from "../../utils";
 
 const months = [
     'January', 'February', 'March', 'April', 'May', 'June', 'July',
@@ -9,7 +10,7 @@ const days = [
     'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'
 ];
 
-export const Calendar = ({ selected, setSelected, availableDays }) => {
+export const Calendar = ({ selected, setSelected, availableDays, className = '' }) => {
     const [ date, setDate ] = useState({
         month: 0,
         year: 0,
@@ -60,7 +61,7 @@ export const Calendar = ({ selected, setSelected, availableDays }) => {
 
         for (let i = 1; i <= firstDay; i++) {
             const prevMonthDate = totalDaysPrevMonth - firstDay + i;
-            const key = new Date(date.year, date.month - 1, prevMonthDate).toLocaleDateString();
+            const key = new Date(date.year, date.month - 1, prevMonthDate).toLocaleDateString('de-DE');
             daysArr.push({
                 date: prevMonthDate,
                 key: key,
@@ -72,7 +73,7 @@ export const Calendar = ({ selected, setSelected, availableDays }) => {
 
         const today = new Date();
         for (let i = 1; i <= totalDaysMonth; i++) {
-            const key = new Date(date.year, date.month, i).toLocaleDateString();
+            const key = new Date(date.year, date.month, i).toLocaleDateString('de-DE');
             const day = getCorrectDay(year, month, i);
 
             const todayClass = i === today.getDate() && month === today.getMonth() && year === today.getFullYear()
@@ -90,7 +91,7 @@ export const Calendar = ({ selected, setSelected, availableDays }) => {
         if (daysArr.length < gridsize) {
             const count = gridsize - daysArr.length;
             for (let i = 1; i <= count; i++) {
-                const key = new Date(date.year, date.month + 1, i).toLocaleDateString();
+                const key = new Date(date.year, date.month + 1, i).toLocaleDateString('de-DE');
                 const day = getCorrectDay(year, month + 1, i);
                 const nextMonth = month + 1 > 11 ? 0 : month + 1;
                 daysArr.push({
@@ -106,13 +107,19 @@ export const Calendar = ({ selected, setSelected, availableDays }) => {
         return daysArr;
     };
 
+    const handleClick = (key) => {
+        const date = germanDateStringToDate(key);
+        const day = date.getDay();
+        setSelected(day === 0 ? '' : key);
+    };
+
     return (
-        <div className='calendar'>
+        <div className={'calendar ' + className}>
             <div className='calendar-nav'>
                 <h2>{ months[date.month] } { date.year }</h2>
                 <div className='date'>
                     <div id="prev" onClick={previousMonth} />
-                    <div id='now' onClick={thisMonth}>Heute</div>
+                    <div id='now' onClick={thisMonth}>Today</div>
                     <div id='next' onClick={nextMonth} />
                 </div>
             </div>
@@ -126,7 +133,7 @@ export const Calendar = ({ selected, setSelected, availableDays }) => {
                     daysForCalendar(date.year, date.month).map(d =>
                         <div
                             key={d.key}
-                            onClick={() => setSelected(d.key)}
+                            onClick={() => handleClick(d.key)}
                             className={
                                 (d.todayClass ? 'today ' : '') +
                                 (d.day === 6 ? 'grey ' : '') +

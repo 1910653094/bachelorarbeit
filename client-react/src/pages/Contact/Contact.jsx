@@ -2,10 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FirstContent, SecondContent, ThirdContent } from './StepContent';
 import StepProgressBar from 'react-step-progress';
-
+import { fetchData } from '../../utils';
 import 'react-step-progress/dist/index.css';
 import './Contact.css';
-import {fetchData} from "../../utils";
 
 const keys = ['company', 'name', 'email', 'description'];
 

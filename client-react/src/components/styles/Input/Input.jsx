@@ -14,10 +14,12 @@ export const Input = props => {
         onChange,
         type,
         errorMessage,
+        error = false,
         maxWidth = 320,
     } = props;
+
     return (
-        <div className='custom-input' style={{ maxWidth: maxWidth }} {...props}>
+        <div className='custom-input' style={{ maxWidth: maxWidth }} /*{...props}*/>
             {
                 title &&
                 <div className='input-title'>
@@ -28,7 +30,6 @@ export const Input = props => {
                 type === 'password' ? (
                     <div className='password-container'>
                         <input
-                            {...props}
                             type={visible ? 'text' : 'password'}
                             placeholder={placeholder}
                             value={value}
@@ -45,7 +46,7 @@ export const Input = props => {
                     </div>
                 ) : (
                     <input
-                        {...props}
+                        className={error ? 'input-error' : ''}
                         type={type}
                         placeholder={placeholder}
                         value={value}

@@ -11,14 +11,24 @@ export const TextArea = props => {
     } = props;
     return (
         <div className='custom-input' style={{ maxWidth: maxWidth }} {...props}>
-            {title && <div className='input-title'>{title}</div>}
+            {
+                title &&
+                <div className='input-title'>
+                    { title }
+                </div>
+            }
             <textarea
                 {...props}
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
             />
-            {errorMessage && <div className='error'>{errorMessage}</div>}
+            {
+                errorMessage &&
+                <div className='error'>
+                    { errorMessage }
+                </div>
+            }
         </div>
     );
 };

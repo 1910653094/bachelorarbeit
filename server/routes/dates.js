@@ -46,14 +46,6 @@ router.post('/',
         .normalizeEmail(),
     body('date')
         .isObject(),
-    body('company')
-        .not().isEmpty(),
-    body('contact_name')
-        .not().isEmpty(),
-    body('contact_email')
-        .not().isEmpty(),
-    body('description')
-        .not().isEmpty(),
     async (req, res, next) => {
         const errors = validationResult(req);
 
@@ -61,7 +53,8 @@ router.post('/',
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { email, date } = req.body;
+        let { email, date } = req.body;
+        date.date = new Date(date.date);
 
         const user = await User.findOne({ email });
         if (user) {
@@ -87,7 +80,11 @@ router.post('/',
 
 /**
  * {
- *  email: '',
+ *  email: '',  // person to contact
+ *  company: '',
+ *  contact_name: '',
+ *  contact_email: '',
+ *  description: '',
  *  date: {
  *   date: 2022-01-23,
  *   hours: {
@@ -103,6 +100,14 @@ router.post('/check',
         .normalizeEmail(),
     body('date')
         .isObject(),
+    body('company')
+        .not().isEmpty(),
+    body('contact_name')
+        .not().isEmpty(),
+    body('contact_email')
+        .not().isEmpty(),
+    body('description')
+        .not().isEmpty(),
     async (req, res, next) => {
         const errors = validationResult(req);
 
@@ -118,8 +123,6 @@ router.post('/check',
             const dateIdx = user.dates.findIndex(d => d.date.toLocaleDateString() === date.date.toLocaleDateString());
 
             const { from, until } = date.hours;
-            console.log(from);
-            console.log(until);
             const hoursIdx = user.dates[dateIdx].hours.findIndex(h => h.from === from && h.until === until);
             if (dateIdx >= 0 && hoursIdx >= 0) {
                 await User.findOneAndUpdate(

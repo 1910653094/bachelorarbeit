@@ -1,11 +1,12 @@
 .card-container {
     width: 70%;
-    height: 4rem;
+    /*height: 4rem;*/
 
     border: 1px solid var(--background-second);
     border-radius: .5rem;
     background-color: var(--background-second);
     box-shadow: .3rem .3rem .15rem var(--shadow-color);
+    color: var(--primary-color);
 
     display: flex;
     align-items: center;
@@ -16,6 +17,12 @@
 }
 .card-container.big {
     height: 6rem;
+}
+.card-container.big-error {
+    height: 10rem;
+}
+.card-container.big > button {
+    width: unset;
 }
 
 [data-theme="dark"] .card-container {
@@ -29,6 +36,9 @@
 }
 .text-container > div {
     padding-bottom: .65rem;
+}
+.text-container.unset-height > div {
+    padding-bottom: unset;
 }
 
 .card-container > input {

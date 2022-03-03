@@ -18,13 +18,9 @@ const authorize = (req, res, next) => {
     return next();
 };
 
-const createToken = (id, email) => {
-    console.log(jwtSecret);
-    console.log(process.env.TOKEN_SECRET);
-    return jwt.sign(
-        { user_id: id, email },
-        jwtSecret
-    );
-};
+const createToken = (id, email) => jwt.sign(
+    { user_id: id, email },
+    jwtSecret
+);
 
 module.exports = { authorize, createToken };

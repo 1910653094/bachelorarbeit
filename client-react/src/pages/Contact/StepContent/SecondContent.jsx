@@ -86,7 +86,7 @@ export const SecondContent = ({ setForm }) => {
     }, [selected, data]);
 
     const setSelectedCard = idx => {
-        let prev = [ ...selectedCard ].map(() => false);
+        let prev = [...selectedCard].map(() => false);
         prev[idx] = true;
         setSelectedCardState(prev);
         setForm(prev => ({ ...prev, date: possibilities[idx] }));

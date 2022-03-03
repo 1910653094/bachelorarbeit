@@ -8,6 +8,8 @@
     gap: 0.5rem;
     max-width: 320px;
     width: 100%;
+
+    padding: .5rem 0;
 }
 
 .custom-input > .password-container {
@@ -34,6 +36,12 @@
     font-size: 1rem;
     color: var(--primary-color);
     outline: none;
+
+    font-family: 'MS Shell Dlg', montserrat, monospace;
+}
+
+input.input-error {
+    border: 1px solid var(--error-color);
 }
 
 .custom-input:focus {
@@ -42,4 +50,8 @@
 
 .custom-input::placeholder {
     color: var(--shadow-color);
+}
+
+.error {
+    color: var(--error-color);
 }
