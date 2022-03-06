@@ -3,6 +3,7 @@ const { body, query, validationResult } = require('express-validator');
 
 const { User } = require('../models');
 const { authorize } = require('../middleware/auth');
+const EmailSender = require('../utils/EmailSender');
 
 const router = express.Router();
 
@@ -115,7 +116,7 @@ router.post('/check',
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { email, date } = req.body;
+        const { email, date, company, contact_name, contact_email, description } = req.body;
         date.date = new Date(date.date);
 
         const user = await User.findOne({ email });
@@ -129,7 +130,26 @@ router.post('/check',
                     { email },
                     { $set: { [`dates.${dateIdx}.hours.${hoursIdx}.available`]: false } }
                 );
+
                 // send email to me
+                const textToUser = `Dear reader,\nthe company ${company} is interested in your profile. ` +
+                `You got a meeting with them for this job offering: ${description}. ` +
+                    `The meeting is on ${date.date} from ${date.hours.from} until ${date.hours.until}. ` +
+                    `If you are not interested please write ${contact_name} an email to this address: ${contact_email}` +
+                    `\n\nBest Regards\nThe My-CV Team!`;
+                // on click on button / <a> send GET to url which sends email to cancel meeting with company -> future
+                const email = new EmailSender();
+                email.setOptions(email, 'You got a meeting!', textToUser);
+                email.send();
+
+                // send email to company to confirm meeting
+                const textToCompany = `Dear ${contact_name},\n` +
+                    `Your meeting on ${date.date} from ${date.hours.from} until ${date.hours.until} is confirmed.` +
+                    `If the user is not interested in this job offering, you will get a cancel email from us.` +
+                    `\n\nBest regards\nThe My-CV Team!`;
+                email.setOptions(contact_email, 'You got a meeting!', textToCompany);
+                email.send();
+
                 return res.status(200).json({ success: 'This date has now been taken' });
             }
             return res.status(404).json({ errors: 'There is an error with the date Object' });

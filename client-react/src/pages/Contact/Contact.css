@@ -9,6 +9,8 @@ input, textarea {
     width: 100%;
     display: flex;
     color: #222222;
+    overflow-y: hidden;
+    height: 90%;
 }
 
 .step-progress-bar {
