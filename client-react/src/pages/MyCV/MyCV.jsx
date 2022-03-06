@@ -1,12 +1,23 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Experience, Skill } from '../../components';
+import { BadmintonIcon, CodingIcon, TravelIcon, ClimbingIcon, HockeyIcon } from '../../assets';
+import { Experience, Interest, Skill } from '../../components';
 import { ContentContainer, Paragraph } from '../../layout';
 import './MyCV.css';
-import { BadmintonIcon, CodingIcon, TravelIcon, ClimbingIcon, HockeyIcon } from '../../assets';
 
 export const MyCV = () => {
     const navigate = useNavigate();
+
+    const getInterests = () => {
+        const newInterestsArr = [];
+        for (let i = 0; i < interests.length; i++) {
+            if (i % 3 === 0) {
+                newInterestsArr.push([]);
+            }
+            newInterestsArr[newInterestsArr.length - 1].push(interests[i]);
+        }
+        return newInterestsArr;
+    };
 
     return (
         <div className='container'>
@@ -20,7 +31,7 @@ export const MyCV = () => {
             </div>
 
             <div className='half-container left'>
-                <div className='start-container'/>
+                <div className='start-end-container'/>
 
                 <Paragraph title='Expertise'>
                     <div className='expertise-list'>
@@ -33,33 +44,35 @@ export const MyCV = () => {
                         }
                     </div>
                 </Paragraph>
+                <Paragraph title='Languages'>
+                    {
+                        languages.map(l =>
+                            <div key={l.language}>
+                                <ContentContainer content={{ title: l.language, subtitle: l.level }} />
+                            </div>
+                        )
+                    }
+                </Paragraph>
                 <Paragraph title='Interests'>
-                    <div className='interest-list-first'>
-                        <div>
-                            <img src={HockeyIcon} alt='hockey'/>
-                        </div>
-                        <div>
-                            <img src={BadmintonIcon} alt='badminton'/>
-                        </div>
-                        <div>
-                            <img src={ClimbingIcon} alt='climbing'/>
-                        </div>
-                    </div>
-                    <div className='interest-list-second'>
-                        <div>
-                            <img src={TravelIcon} alt='travel'/>
-                        </div>
-                        <div>
-                            <img src={CodingIcon} alt='coding'/>
-                        </div>
-                    </div>
+                    {
+                        getInterests()
+                            .map(interestsArr =>
+                                <div className='interest-list'>
+                                    {
+                                        interestsArr.map(interest =>
+                                                <Interest icon={interest.icon} label={interest.label} />
+                                        )
+                                    }
+                                </div>
+                            )
+                    }
                 </Paragraph>
 
-                <div className='end-container'/>
+                <div className='start-end-container'/>
             </div>
 
             <div className='half-container right'>
-                <div className='start-container'/>
+                <div className='start-end-container'/>
 
                 <div className='name-container'>
                     <h1>Fabian</h1>
@@ -88,7 +101,7 @@ export const MyCV = () => {
                     }
                 </Paragraph>
 
-                <div className='end-container'/>
+                <div className='start-end-container'/>
             </div>
         </div>
     );
@@ -96,6 +109,46 @@ export const MyCV = () => {
 
 const expertise = [
     'Frontend development', 'Backend development', 'App development'
+];
+const languages = [
+    {
+        language: 'German',
+        level: 'Mother tongue'
+    },
+    {
+        language: 'French',
+        level: 'Mother tongue'
+    },
+    {
+        language: 'English',
+        level: 'Fluent in comprehension, speech and writing, lived in Ireland for 5 months (semester abroad), C1 level'
+    },
+    {
+        language: 'Spanish',
+        level: '3 Semester of Spanish, B1 Level'
+    }
+];
+const interests = [
+    {
+        icon: HockeyIcon,
+        label: 'Hockey',
+    },
+    {
+        icon: BadmintonIcon,
+        label: 'Badminton',
+    },
+    {
+        icon: ClimbingIcon,
+        label: 'Climbing',
+    },
+    {
+        icon: TravelIcon,
+        label: 'Travel',
+    },
+    {
+        icon: CodingIcon,
+        label: 'Coding',
+    }
 ];
 const skills = [
     {

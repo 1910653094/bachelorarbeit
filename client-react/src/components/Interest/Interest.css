@@ -1,0 +1,23 @@
+.interest-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3rem;
+    margin-bottom: .75rem;
+}
+
+.interest-icon-container {
+    padding: .75rem;
+    border-radius: 50%;
+    background-color: var(--shadow-color);
+    margin-bottom: .4rem;
+}
+
+[data-theme="dark"] .interest-icon-container {
+    background-color: var(--tertiary-color);
+}
+
+.interest-icon-container, .interest-icon-container > img {
+    width: 2.75rem;
+}

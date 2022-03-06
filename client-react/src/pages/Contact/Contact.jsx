@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FirstContent, SecondContent, ThirdContent } from './StepContent';
 import StepProgressBar from 'react-step-progress';
@@ -40,7 +40,10 @@ export const Contact = () => {
         currForm.current = form;
     }, [form]);
 
-    const getData = () => currForm.current;
+    const getData = useCallback(
+        () => currForm.current,
+        []
+    );
 
     const handleSubmit = () => {
         const user = JSON.stringify({

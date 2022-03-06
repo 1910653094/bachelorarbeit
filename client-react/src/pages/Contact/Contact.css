@@ -35,3 +35,12 @@ input, textarea {
     overflow-y: scroll;
     padding: 50px 0;
 }
+
+.form-half-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100%;
+    width: 50%;
+    text-align: left;
+}

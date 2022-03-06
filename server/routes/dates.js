@@ -129,6 +129,7 @@ router.post('/check',
                     { email },
                     { $set: { [`dates.${dateIdx}.hours.${hoursIdx}.available`]: false } }
                 );
+                // send email to me
                 return res.status(200).json({ success: 'This date has now been taken' });
             }
             return res.status(404).json({ errors: 'There is an error with the date Object' });
