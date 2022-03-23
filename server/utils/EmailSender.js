@@ -30,7 +30,7 @@ class EmailSender {  // needs to be tested
             } else {
                 console.log('Email sent: ' + info.response);
             }
-        }).then();
+        });
     };
 }
 

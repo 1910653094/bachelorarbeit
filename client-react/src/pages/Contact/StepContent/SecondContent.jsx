@@ -100,6 +100,7 @@ export const SecondContent = ({ setForm }) => {
                 availableDays={data.map(d => d.date.toLocaleDateString())}
             />
             <div className='possibilities-container'>
+                <p>Choose a date for a meeting</p>
                 {
                     possibilities.map((d, idx) =>
                         <Card key={idx} dateObj={d} idx={idx} selection={selectedCard[idx]} onChange={setSelectedCard} />

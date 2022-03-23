@@ -28,14 +28,19 @@ input, textarea {
 
 .possibilities-container {
     width: 40%;
-    height: 90%;
+    height: 95%;
 
     display: flex;
     align-items: center;
     flex-direction: column;
+    text-align: start;
 
     overflow-y: scroll;
-    padding: 50px 0;
+    margin: 50px 0;
+}
+
+.possibilities-container > p {
+    width: 70%;
 }
 
 .form-half-container {

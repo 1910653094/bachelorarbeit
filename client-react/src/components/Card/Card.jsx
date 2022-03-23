@@ -2,9 +2,16 @@ import React, { useContext, useState } from 'react';
 import { fetchData, germanDateStringToDate } from '../../utils';
 import { AuthContext } from '../../context';
 import { Button, Input } from '../styles';
+import { DeleteIcon } from '../../assets';
 import './Card.css';
 
-export const Card = ({ dateObj, idx = -1, selection = false, onChange = () => {} }) => {
+export const Card = ({
+                         dateObj,
+                         idx = -1,
+                         selection = false,
+                         onChange = null,
+                         setPossibilities = () => {}
+}) => {
     const [ from, setFrom ] = useState('');
     const [ until, setUntil ] = useState('');
     const [ fromError, setFromError ] = useState(false);
@@ -29,7 +36,7 @@ export const Card = ({ dateObj, idx = -1, selection = false, onChange = () => {}
     };
 
     const handleClick = () => {
-        if (fromError || untilError) {
+        if (!from || !until || fromError || untilError) {
             return;
         }
         const date = germanDateStringToDate(dateObj);
@@ -57,8 +64,46 @@ export const Card = ({ dateObj, idx = -1, selection = false, onChange = () => {}
                     console.error(res.errors);
                     return;
                 }
-                console.log(res);
-                // card should disappear and be added to possibilities array
+                setPossibilities(prev => [ ...prev, { date, from, until } ]);
+                setFrom('');
+                setFromError(false);
+                setUntil('');
+                setUntilError(false);
+            });
+    };
+
+    const handleDelete = () => {
+        const dateJSON = JSON.stringify({
+            email: auth.email,
+            token: auth.token,
+            date: {
+                date: dateObj.date,
+                hours: {
+                    from: dateObj.from,
+                    until: dateObj.until
+                },
+            },
+        });
+
+        fetchData(process.env.REACT_APP_BACKEND_URL + '/dates', {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: dateJSON,
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.errors) {
+                    alert('An error occurred');
+                    console.error(res.errors);
+                    return;
+                }
+                setPossibilities(prev => [
+                    ...prev.slice(0, idx),
+                    ...prev.slice(idx + 1, prev.length)
+                ]);
             });
     };
 
@@ -71,7 +116,13 @@ export const Card = ({ dateObj, idx = -1, selection = false, onChange = () => {}
                             <div>From: {dateObj.from}</div>
                             <div>To: {dateObj.until}</div>
                         </div>
-                        <input type='radio' checked={selection} onChange={() => onChange(idx)} />
+                        {
+                            onChange !== null ? (
+                                <input type='radio' checked={selection} onChange={() => onChange(idx)} />
+                            ) : (
+                                <DeleteIcon height={25} onClick={handleDelete} />
+                            )
+                        }
                     </>
                 ) : (
                     <>

@@ -1,3 +1,13 @@
+.home-header {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    margin-left: 2rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
 .home-container {
     display: flex;
     justify-content: space-between;

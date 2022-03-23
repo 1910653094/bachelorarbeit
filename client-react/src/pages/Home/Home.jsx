@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context';
 import { StepContent } from '../../layout';
 import { Calendar, Card } from '../../components';
-import './Home.css';
 import { fetchData } from '../../utils';
+import './Home.css';
 
 export const Home = () => {
     const { auth } = useContext(AuthContext);
@@ -35,7 +35,6 @@ export const Home = () => {
                         }
                     }
                 }
-                console.log(merged);
                 setData(merged);
             }).catch(err => console.error(err));
     }, []);
@@ -50,24 +49,30 @@ export const Home = () => {
     }, [selected, data]);
 
     return (
-        <StepContent direction='row' alignment='center'>
-            <Calendar
-                selected={selected}
-                setSelected={setSelected}
-                availableDays={[]}
-                className='home-calendar'
-            />
-            <div className='possibilities-container'>
-                {
-                    selected &&
-                    <Card dateObj={selected} />
-                }
-                {
-                    possibilities.map((d, idx) =>
-                        <Card key={idx} dateObj={d} idx={idx} />
-                    )
-                }
+        <>
+            <div className='home-header'>
+                <h1>Meeting dates</h1>
+                <p>Add dates to indicate that you have time for a meeting on this day and time</p>
             </div>
-        </StepContent>
+            <StepContent direction='row' alignment='center'>
+                <Calendar
+                    selected={selected}
+                    setSelected={setSelected}
+                    availableDays={[]}
+                    className='home-calendar'
+                />
+                <div className='possibilities-container'>
+                    {
+                        selected &&
+                        <Card dateObj={selected} setPossibilities={setPossibilities} />
+                    }
+                    {
+                        possibilities.map((d, idx) =>
+                            <Card key={idx} dateObj={d} idx={idx} setPossibilities={setPossibilities} />
+                        )
+                    }
+                </div>
+            </StepContent>
+        </>
     );
 };
