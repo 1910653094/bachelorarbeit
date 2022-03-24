@@ -1,0 +1,102 @@
+<template>
+  <div class="switch-container">
+    <label class="switch">
+      <input type="checkbox" v-on:change="toggleTheme()" v-model="checked" />
+      <span class="slider round" />
+    </label>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      theme: '',
+      checked: false
+    }
+  },
+  mounted() {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      this.theme = 'dark';
+      this.checked = true;
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  },
+  methods: {
+    toggleTheme() {
+      const newTheme = this.theme === '' ? 'dark' : '';
+      this.theme = newTheme;
+      document.documentElement.setAttribute('data-theme', newTheme);
+    },
+  },
+  name: 'Switch',
+};
+</script>
+
+<style scoped>
+.switch-container {
+  margin-left: auto;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 1rem;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: var(--background-color);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--interactive-color)/*#2196F3;*/
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--interactive-color);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+</style>
