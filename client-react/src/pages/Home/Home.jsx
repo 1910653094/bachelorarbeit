@@ -48,6 +48,21 @@ export const Home = () => {
         return () => {};
     }, [selected, data]);
 
+    const handleAdd = (value) => {
+        setPossibilities(prev => [ ...prev, value ]);
+        setData(prev => [ ...prev, value ]);
+    };
+
+    const handleDelete = (idx) => {
+        const obj = possibilities[idx];
+        const newData = data.filter(d => JSON.stringify(d) !== JSON.stringify(obj));
+        setData(newData);
+        setPossibilities(prev => [
+            ...prev.slice(0, idx),
+            ...prev.slice(idx + 1, prev.length)
+        ]);
+    };
+
     return (
         <>
             <div className='home-header'>
@@ -56,19 +71,19 @@ export const Home = () => {
             </div>
             <StepContent direction='row' alignment='center'>
                 <Calendar
+                    availableDays={data.map(d => d.date.toLocaleDateString())}
+                    className='home-calendar'
                     selected={selected}
                     setSelected={setSelected}
-                    availableDays={[]}
-                    className='home-calendar'
                 />
                 <div className='possibilities-container'>
                     {
                         selected &&
-                        <Card dateObj={selected} setPossibilities={setPossibilities} />
+                        <Card dateObj={selected} setPossibilities={handleAdd} />
                     }
                     {
                         possibilities.map((d, idx) =>
-                            <Card key={idx} dateObj={d} idx={idx} setPossibilities={setPossibilities} />
+                            <Card key={idx} dateObj={d} idx={idx} setPossibilities={handleDelete} />
                         )
                     }
                 </div>

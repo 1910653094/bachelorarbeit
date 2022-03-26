@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
+import { germanDateStringToDate } from '../../utils';
 import './Calendar.css';
-import {germanDateStringToDate} from "../../utils";
 
 const months = [
     'January', 'February', 'March', 'April', 'May', 'June', 'July',

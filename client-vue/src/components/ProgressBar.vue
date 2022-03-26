@@ -8,7 +8,7 @@
     </div>
     <div class="progressbar-footer">
       <div>
-        <Button bgColor="var(--tertiary-color)" :disabled="step === 0" :onClick="handlePrev">Prev</Button>
+        <Button className="secondary" :disabled="step === 0" :onClick="handlePrev">Prev</Button>
       </div>
       <div>
         <Button :onClick="handleNext">

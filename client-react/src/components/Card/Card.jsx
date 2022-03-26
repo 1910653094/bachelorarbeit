@@ -64,7 +64,7 @@ export const Card = ({
                     console.error(res.errors);
                     return;
                 }
-                setPossibilities(prev => [ ...prev, { date, from, until } ]);
+                setPossibilities({ date, from, until });
                 setFrom('');
                 setFromError(false);
                 setUntil('');
@@ -100,10 +100,7 @@ export const Card = ({
                     console.error(res.errors);
                     return;
                 }
-                setPossibilities(prev => [
-                    ...prev.slice(0, idx),
-                    ...prev.slice(idx + 1, prev.length)
-                ]);
+                setPossibilities(idx);
             });
     };
 

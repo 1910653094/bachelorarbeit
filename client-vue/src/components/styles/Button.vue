@@ -1,5 +1,5 @@
 <template>
-  <button class="actn-btn" @click="onClick" :style="{ backgroundColor: bgColor }" :disabled="disabled">
+  <button :class="'actn-btn ' + className" @click="onClick" :disabled="disabled">
     <slot>No content</slot>
   </button>
 </template>
@@ -9,10 +9,7 @@ export default {
   name: 'Button',
   props: {
     onClick: Function,
-    bgColor: {
-      type: String,
-      default: 'var(--primary-color)',
-    },
+    className: String,
     disabled: {
       type: Boolean,
       default: false,
@@ -36,6 +33,12 @@ export default {
   border-radius: 0.25rem;
   cursor: pointer;
   background-color: var(--primary-color);
+}
+
+.actn-btn.secondary {
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  background-color: var(--background-color);
 }
 
 .actn-btn:hover {
