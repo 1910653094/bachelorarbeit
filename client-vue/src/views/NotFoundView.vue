@@ -19,13 +19,13 @@ export default {
     }
   },
   mounted() {
-    /*const interval = setInterval(() => {
+    const interval = setInterval(() => {
       --this.timeLeft;
       if (this.timeLeft <= 0) {
         this.$router.push({ name: 'MyCV' });
         clearInterval(interval);
       }
-    }, 1000);*/
+    }, 1000);
   },
   name: 'NotFoundView',
   components: { ErrorPageWrapper },
